@@ -1,0 +1,19 @@
+{% extends 'master_login.html' %}
+
+{% load static %}
+
+{% block contenido %}
+<form action="/check_login" method="POST" >
+    {% csrf_token %}
+    <input type="text"  name="user" placeholder="Ingrese el usuario" autocomplete="off" autofocus required>
+    <input type="password" name="password" placeholder="Contraseña" autocomplete="new-password" required>
+
+    <input type="submit" value="Entrar al sistema">
+
+    {% if request.session.login_message != None  or request.session.login_message != '' %}
+        <div class="error"><i class="fa-solid fa-triangle-exclamation"></i>  {{request.session.login_message}}</div>
+    {% endif %}
+
+</form>
+
+{% endblock %}

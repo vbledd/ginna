@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+//background grandiente animation
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.all{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+
+
+    .form{
+        width: 70%;
+        height: fit-content;
+        padding-bottom: 15px;
+        background: rgba(255, 255, 255, 0.52);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        //glass efect
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+        //media query
+        @media screen and (max-width: 600px){
+            width: 95%;
+            height: 80%;
+        }
+        
+
+        .img1{
+            width: 60%;
+            margin-bottom: 10px;
+            filter:brightness(0) invert(1) drop-shadow(0 0 3px rgba(75, 75, 75,0.5));
+        }
+        .img2{
+            width: 35%;
+            filter:brightness(0) invert(1) drop-shadow(0 0 3px rgba(75, 75, 75,0.5));
+            margin-bottom: 40px;
+        }
+
+        form{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h1{
+                font-size: 30px;
+                font-family: roboto;
+            }
+
+            input{
+                width: 80%;
+                height: 40px;
+                border: none;
+                border-bottom: 1px solid #000;
+                outline: none;
+                background: transparent;
+                font-size: 20px;
+                margin-bottom: 20px;
+                color: #000;
+                transition: 0.5s;
+                &:focus{
+                    border-bottom: 1px solid #000;
+                }
+            }
+
+            input[type="submit"]{
+                margin-top: 30px;
+                width: 80%;
+                height: 40px;
+                border: none;
+                color: #232323;
+                background-color: white;
+                font-size: 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.5s;
+                &:hover{
+                    background: #fff;
+                    color: #000;
+                }
+            }
+
+            select{
+                width: 80%;
+                height: 40px;
+                border: none;
+                border-bottom: 1px solid #000;
+                outline: none;
+                background: transparent;
+                font-size: 20px;
+                margin-bottom: 20px;
+                color: #000;
+                transition: 0.5s;
+                &:focus{
+                    border-bottom: 1px solid #000;
+                }
+            }
+        }
+
+    }
+}
+
+.error{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(231, 60, 126,0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}

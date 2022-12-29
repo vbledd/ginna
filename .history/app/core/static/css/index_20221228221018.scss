@@ -1,0 +1,167 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+h1{
+color: red;
+text-align: center;
+font-size: 30px;
+}
+h2{
+text-align: center;
+}
+
+h3{
+color: black;
+text-align: center;
+}
+
+a{
+color: black;
+padding-left: 0,5px;
+size:15px;
+}
+
+  button{
+    text-align: center;
+  }
+
+.header{
+    width: 90%;
+
+    align-items: center;
+    justify-content: center;
+
+
+    ul{
+        display: flex;
+        list-style: none;
+        align-items: center;
+        gap:10px;
+        padding: 0;
+        margin: 0;
+        li{
+            padding: 10px;
+            a{
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
+                background-color: #fff;
+                display: flex;
+                padding: 10px;
+                border-radius: 10px;
+                transition: 300ms;
+
+                &:hover{
+                    transform: scale(1.1)
+                }
+            }
+        }
+    }
+}
+
+.productos{
+    display: flex;
+    gap: 10px;
+    width: 90%;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    @media screen and(max-width: 550px) {
+        width: 100%;
+    }
+
+    div{
+        position: relative;
+        width: 200px;
+        height: 300px;
+        background-color: #fff;
+        padding:5px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+
+        img{
+
+            height: 150px;
+            object-fit: cover;
+        }
+        p{
+            font-size: 20px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 5px;
+        }
+    }
+    
+}
+
+.historia{
+    width: 80%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.footer{
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding:30px;
+    box-sizing: border-box;
+
+
+
+}
+
+.boton1{
+    width:80%;
+    margin-left: 10%;
+    height: 30px;
+    background-color: rgb(0, 66, 220);
+    color : #fff;
+    border-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 300ms;
+    border:none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgb(0, 218, 18);
+        transform: scale(1.1);
+    }
+}
+
+.reservas{
+    @extend .productos;
+}
+
+.detalle_reserva{
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}

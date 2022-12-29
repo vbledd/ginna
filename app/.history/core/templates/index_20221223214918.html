@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %} PRODUCTOS {% endblock %}
+{% block contenido %}
+    <h2 align="center">PRODUCTOS</h2>
+
+
+    <div class="productos">
+
+        {% for producto in registros %}
+        <div>
+            <img src="/{{producto.imagen}}" alt="">
+            <h3>{{producto.nombre}}</h3>
+            <p>${{producto.precio}}</p>
+            <button class="boton1" type="button" onclick="reservar({{producto.id}})">Reservar</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+
+      function reservar(id){
+        // go to url
+        window.location.href = `/core/reservar?id=${id}`;
+      }
+    </script>
+{% endblock %}

@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  web:
+      build: ./app
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+        - ./app/:/usr/src/app/
+      ports:
+        - "80:8000"
+      depends_on:
+        - base_de_datos
+
+  base_de_datos:
+    image: 'postgres:latest'
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=miguelsebaedu
+      - POSTGRES_PASSWORD=Aiepcallampa6969
+      - POSTGRES_DB=sam
+    ports:
+      - '3013:5432'
+
+
+volumes:
+  postgres_data:

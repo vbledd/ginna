@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"  href="/static/css/index.css">
+    <title>Las Delicias - {% block titulo %} {% endblock %}</title>
+  </head>
+  <body background="https://i.pinimg.com/originals/c6/e5/5e/c6e55e26f9911de6a8e476e33c3a9a68.jpg">
+      
+      <!-- <input type="submit" name="Historia" href="HISTORIA.PHP"></input> -->
+    <header class="header">
+        <h1> LA DULCERIA DE LAS DELICIAS</h1>
+        <nav>
+          <ul>
+            <li><a href="/core/index">Inicio</a></li>
+            <li><a href="/core/historia">Historia</a></li>
+            <li><a href="/logout">Cerrar Sesión</a></li>
+            <li><a href="/core/reservas">Productos Reservados : {{request.session.contador}}</a></li>
+          </ul>
+    </header>
+
+    {% block contenido %} {% endblock %}
+   
+    <div class="footer">
+    <div>Dirección: Los andes oriente #4444, Santiago | Telefono : +56 9 3098 9876</div>
+    <div><b>©2023 copyright Todos los derechos resevados Dulceria las delicias</b> </div>
+
+    </div>
+  </body>
+</html>

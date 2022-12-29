@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %} PRODUCTOS {% endblock %}
+{% block contenido %}
+
+  <h2 align="center">Tus Reservas!</h2>
+  <div class="reservas">
+      {% for reserva in request.session.reservas %}
+        <div>
+            <img src="/{{reserva.imagen}}" alt="">
+            <h3>{{reserva.nombre}}</h3>
+            <p>${{reserva.precio}}</p>
+            <button class="boton1" type="button" onclick="eliminar({{reserva.id}})">Eliminar</button>
+        </div>
+        
+        {% endfor %}
+
+
+  </div>
+
+
+{% endblock %}

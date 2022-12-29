@@ -1,0 +1,132 @@
+{% extends 'master_login.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+    {% if request.session.usuario.perfil == 3%}
+
+    <form action="/guardar_seleccion" method="post">
+        {% csrf_token %}
+        <select name="fase" id="fase" required onchange="seleccion.select_fase()">
+            <option value="">Seleccione una Fase...</option>
+        </select>
+
+        <select name="area" id="area" onchange="seleccion.select_area()" required>
+            <option value="">Seleccione un area...</option>
+        </select>
+
+        <select name="tandem" id="tandem" required>
+            <option value="">Seleccione un tandem...</option>
+        </select>
+
+
+        <input type="submit" value="Entrar">
+    </form>
+
+    {% endif %}
+
+    {% if request.session.usuario.perfil == 2%}
+
+    <form action="/guardar_seleccion" method="post">
+        {% csrf_token %}
+        <select name="fase" id="fase" required onchange="seleccion.select_fase()">
+            <option value="">Seleccione una Fase...</option>
+        </select>
+
+        <select name="area" id="area" required>
+            <option value="">Seleccione un area...</option>
+        </select>
+
+        <input type="submit" value="Entrar">
+    </form>
+
+    {% endif %}
+
+    <script>
+        globalThis.all_data = "{{data}}";
+
+        class Seleccion{
+            constructor(){
+                
+                this.fases = []
+                this.areas = []
+                this.tandems = []
+
+                this.init();
+            }
+
+            async init(){
+                await this.get_data();
+
+                this.load_fase();
+
+            }
+
+            get_data(){
+                let $this = this;
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: '/seleccion_data',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            console.log("get data", data);
+                            $this.fases = data.fases;
+                            $this.areas = data.areas;
+                            $this.tandems = data.tandems;
+
+                            resolve(data);
+                        },
+                        error: function (error) {
+                            reject(error);
+                        }
+                    });
+                });
+            }
+
+            load_fase(){
+                let html= `
+                    <option value="" selected >Seleccione una Fase...</option>
+                ${this.fases.map(fase => `
+                    <option value="${fase.id}">${fase.nombre}</option>
+                `).join('')}
+                `;
+                
+                $("#fase").html(html);
+            }
+
+            select_fase(){
+                console.log("seleccionando fase");
+                let fase_id = $("#fase").val();
+                let html= `
+                    <option value="" selected >Seleccione un area...</option>
+                ${this.areas.filter(area => area.fase == fase_id).map(area => `
+                    <option value="${area.id}">${area.nombre}</option>
+                `).join('')}
+                `;
+                
+                $("#area").html(html);
+            }
+
+            select_area(){
+                console.log("seleccionando area");
+                let area_id = $("#area").val();
+                let html= `
+                    <option value="" selected >Seleccione un tandem...</option>
+                ${this.tandems.filter(tandem => tandem.area == area_id).map(tandem => `
+                    <option value="${tandem.id}">${tandem.nombre}</option>
+                `).join('')}
+                `;
+                
+                $("#tandem").html(html);
+            }
+
+        }
+
+        globalThis.seleccion = new Seleccion();
+
+    </script>
+
+{% endblock %}

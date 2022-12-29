@@ -1,0 +1,49 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %} PRODUCTOS {% endblock %}
+{% block contenido %}
+
+  <h2 align="center">Tus Reservas!</h2>
+
+
+
+  <div class="reservas">
+      {% for reserva in request.session.reservas %}
+        <div>
+            <img src="{{reserva.imagen}}" alt="">
+            <h3>{{reserva.nombre}}</h3>
+            <p>${{reserva.precio}}</p>
+            <button class="boton1" onclick="eliminar({{reserva.id}})" type="button">Eliminar</button>
+        </div>
+        
+        {% endfor %}
+
+
+  </div>
+
+  <div class="detalle_reserva">
+
+    <h3>Detalle de Reserva</h3>
+    <p>Confirmar listado de productos!, estos estaran listo para su retiro dentro de 24 horas.</p>
+    <p>Dirección de retiro: Gran Avenida 222, San Miguel</p>
+    <img src="/static/img/mapa.png" width="400" height="200">
+    <button class="boton1" style="margin-top:40px;" type="button" onclick="terminar_reserva()">Confirmar Reserva</button>
+</div>
+
+<script>
+
+    function eliminar(id){
+        // go to url
+        window.location.href = `/core/eliminar?id=${id}`;
+    }
+
+    function terminar_reserva(){
+        // go to url
+
+        alert("Su reserva se ha creado con exito!, se enviaran los datos correspondetes a su correo")
+
+        window.location.href = `/core/terminar_reserva`;
+    }
+</script>
+
+{% endblock %}
